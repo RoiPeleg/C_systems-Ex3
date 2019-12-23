@@ -24,24 +24,28 @@ int getWord(char s[])
 }
 int substring(char *str1, char *str2)
 {
-    int i = 0, j = 0;
-
-    while (*(str2 + j) != '\0')
+    int f = 1;
+    int k = 0;
+    int len1 = 0, len2 = 0;
+    while (*(str2 + k) != '\0')
+        len2++;
+    k = 0;
+    while (*(str1 + k) != '\0')
+        len1;
+    for (int i = 0; i < len1 - len2; i++)
     {
-        while (*(str1 + i) != '\0')
+        f = 1;
+        for (int j = i; j < +i + len2; j++)
         {
-            if (*(str1 + i) != *(str2 + j))
+            if (*(str1 + j) != *(str2 + j - i))
             {
-                i++;
-            }
-            else
-            {
-                j++;
+                f = -1;
+                break;
             }
         }
-    }
-
-    return 0;
+        if (f == 1)
+            return 1;
+        return -1;
 }
 int similar(char *s, char *t, int n)
 {
