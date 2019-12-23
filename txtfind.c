@@ -3,10 +3,11 @@
 int getLine(char s[])
 {
     int i = 0;
+    char g = ' ';
     while (i < LINE && *(s + i) != '\n')
     {
-        scanf(" %c", &s);
-        *(s + i);
+        g= getc(stdin);
+        *(s+i) = g;
         i++;
     }
     return i;
@@ -14,10 +15,11 @@ int getLine(char s[])
 int getWord(char s[])
 {
     int i = 0;
+    char g=' ';
     while (i < WORD && (*(s + i) != '\n' || *(s + i) != '\t' || *(s + i) != ' '))
     {
-        scanf(" %c", &s);
-        *(s + i);
+        g= getc(stdin);
+        *(s+i) = g;
         i++;
     }
     return i;
@@ -31,7 +33,7 @@ int substring(char *str1, char *str2)
         len2++;
     k = 0;
     while (*(str1 + k) != '\0')
-        len1;
+        len1++;
     for (int i = 0; i < len1 - len2; i++)
     {
         f = 1;
@@ -45,6 +47,7 @@ int substring(char *str1, char *str2)
         }
         if (f == 1)
             return 1;
+    }
         return -1;
 }
 int similar(char *s, char *t, int n)
@@ -71,26 +74,26 @@ int similar(char *s, char *t, int n)
 void print_lines(char *str)
 {
     char s[LINE] = {'0'};
-    while (s != 'EOF')
+    while (*s != EOF)
     {
-        if (substring(*s, *str))
+        if (substring(s, str))
         {
             printf("%s", s);
         }
 
-        getLine(*s);
+        getLine(s);
     }
 }
 void print_similar_words(char *str)
 {
     char s[WORD] = {'0'};
-    while (s != 'EOF')
+    while (*s != EOF)
     {
-        if (similar(*s, *str, 1))
+        if (similar(s, str, 1))
         {
             printf("%s", s);
         }
-        getWord(*s);
+        getWord(s);
     }
 }
 int main()
@@ -98,16 +101,16 @@ int main()
     char s[WORD] = {};
     char *ptr = s;
     getWord(ptr);
-    char *wordtosearch = *s;
-    *ptr = s;
+    char *wordtosearch = s;
+    ptr = s;
     getWord(ptr);
     char option = *s;
     getLine(s);
-    if (option = 'a')
+    if (option == 'a')
     {
         print_lines(wordtosearch);
     }
-    else if (option = 'b')
+    else if (option == 'b')
     {
         print_similar_words(wordtosearch);
     }
